@@ -28,12 +28,7 @@ IPAddress    apIP(192, 168, 2, 200);         // Private network address: local &
 ESP8266WebServer server(80);
 WebSocketsServer webSocket = WebSocketsServer(81);
 
-//static const char ssid[] = "MartinRouterQueen";
-//static const char password[] = "86874274";
-//static const char ssid[] = "MartinRouterKing";
-//static const char password[] = "Groenendijk";
-//static const char ssid[] = "espS";
-//static const char password[] = "12345678";
+
 
 
 Adafruit_SSD1306 display;
