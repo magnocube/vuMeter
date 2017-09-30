@@ -42,7 +42,10 @@ String lastCommandColor3 = "";
 String lastCommandSensitivity = "";
 String lastCommandLedMode = "";
 String lastCommandBackMode = "";
+String lastCommandDrop = "";
 
+int dropvalue = 0; // van 0 tot 5;
+boolean drop = false;
 boolean ledOnOff = false;  //determines if the device is on or off (void loop)
 int color1[] = {0, 0, 0};
 int color2[] = {0, 0, 0};
@@ -53,6 +56,8 @@ String ledMode = "Single-Color";
 String backMode = "Ambient-light";
 
 int sound[5];                               //global used vatiable which stores the latest sounds (already filtered)
+int lastSound[5];       
+
 int soundFilter[5] = {45, 80, 65, 55, 70};    //the soundChip is not very accurate, these are the values to filter the input
 
 int tcounter = 0; //3 variables to determine if the incoming sound is trash(idle),,, or if there is actual music
@@ -173,7 +178,10 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(  // all HTML, CSS and JAV
                     document.getElementById('ledModeMenu').value = data;
                 } else if(command == "backMode"){
                     document.getElementById('backModeMenu').value = data;
+                } else if(command == "drop"){
+                    document.getElementById('dropSensitivity').value = data;
                 }
+               
                 else {
                     console.log('unknown event');
                     t.innerHTML = "unknown command  -> " + inp;
@@ -263,6 +271,11 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(  // all HTML, CSS and JAV
             result += document.getElementById("backModeMenu").value;
             websock.send(result);
         }
+        function changeDrop() {
+            var result = "drop:";
+            result += document.getElementById("dropSensitivity").value;
+            websock.send(result);
+        }
 
 
 
@@ -288,8 +301,12 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(  // all HTML, CSS and JAV
         <option>Single-Color</option>
         <option>Standard</option>
         <option>Dual-Color</option>
-        <option>Drop</option>
+        <option>Rainbow</option>
         <option>One-Line</option>
+        <option>Epileptic-1</option>
+        <option>Epileptic-2</option>
+        <option>Epileptic-3</option>
+
     </select> <br><br><br>
 
 
@@ -313,6 +330,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(  // all HTML, CSS and JAV
         </div>
     </div>
     <br>
+    drop: <input type="range" min="0" max="5" id="dropSensitivity" value="0" onChange ="changeDrop()"> <br>
     Sensitivity: <input type="range" min="0" max="1024" id="rangeSensitivity" value="250" onChange ="changeSensitivity()"> <br>
     <a href = '/hackerman'><Button>HACKBUTTON</Button></a> <br>
     <input type="text" id="firstname" onchange="textclick(this);"> <br><br><br>

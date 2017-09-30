@@ -23,9 +23,15 @@ void handleEvent(String data, String Command) {
   } else if (Command  == "backMode") {
     setBackMode(data);
     lastCommandLedMode = Command + ":" + data;
+  } else if (Command  == "drop") {
+    setDrop(data);
+    lastCommandDrop = Command + ":" + data;
   }
 }
-
+void setDrop(String data){
+  drop = data.toInt();
+  oled("changed drop to "+ data);
+}
 void toggleDevice(String data) {
   if (data == "ledon") {
     oled("device turned on");
@@ -79,7 +85,7 @@ void setColor3(String data) {
   color3[0] = redValue.toInt();
   color3[1] = greenValue.toInt();
   color3[2] = blueValue.toInt();
-
+  updateColors(); 
 }
 void handleText(String data) {
   oled(data);

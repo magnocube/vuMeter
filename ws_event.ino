@@ -43,6 +43,9 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
         if(lastCommandBackMode != ""){
           webSocket.sendTXT(num, lastCommandBackMode);
         }
+        if(lastCommandDrop != ""){
+          webSocket.sendTXT(num, lastCommandDrop);
+        }
           
             break;
   }

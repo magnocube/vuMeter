@@ -38,6 +38,10 @@ void setup()
   webSocket.onEvent(webSocketEvent);
   
   strip.begin();
+
+  for(int i =0;i<5;i++){
+    lastSound[i] = 0;  //set lastsound to zero
+  }
  
 }
 

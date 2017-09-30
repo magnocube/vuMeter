@@ -45,24 +45,70 @@ void updateColors() {
       }
 
     }
-  } else if (ledMode == "Drop") {
+  } else if (ledMode == "Rainbow") {
     for (int i = 0; i < 24; i++) {
-      for (int i2 = 0; i2 < 5; i2++) {
 
-        colorMatrix[i][i2][1] = 255;
 
-      }
+      colorMatrix[i][0][0] = 255; // rood
+
+      colorMatrix[i][1][0] = 255; // oranje
+      colorMatrix[i][1][1] = 127; //
+
+      colorMatrix[i][2][0] = 255; // geel
+      colorMatrix[i][2][1] = 255; //
+
+      colorMatrix[i][3][1] = 255; // groen
+
+      colorMatrix[i][4][2] = 255; // blauw
+
+
+
     }
 
   } else if (ledMode == "One-Line") {
     for (int i = 0; i < 24; i++) {
       for (int i2 = 0; i2 < 5; i2++) {
 
-        colorMatrix[i][i2][2] = 255;
+        for (int i3 = 0; i3 < 3; i3++) {
+          colorMatrix[i][i2][i3] = color1[i3];
+        }
 
       }
     }
 
+  } else if (ledMode == "Epileptic-1") {
+    for (int i = 0; i < 24; i++) {
+      for (int i2 = 0; i2 < 5; i2++) {
+        for (int i3 = 0; i3 < 3; i3++) {
+          int randomValue=random(0, 4);
+          colorMatrix[i][i2][i3] = randomValue*randomValue*randomValue*randomValue;
+        }
+      }
+    }
+  }
+  else if (ledMode == "Epileptic-2") {
+
+    for (int i2 = 0; i2 < 5; i2++) {
+      for (int i3 = 0; i3 < 3; i3++) {
+        int randomValue=random(0, 4);
+        for (int i = 0; i < 24; i++) {
+          
+          colorMatrix[i][i2][i3] = randomValue*randomValue*randomValue*randomValue;
+          
+        }
+      }
+    }
+  }
+  else if (ledMode == "Epileptic-3") {
+  for (int i = 0; i < 24; i++) {
+    
+      for (int i3 = 0; i3 < 3; i3++) {
+        int randomValue=random(0, 4);
+        for (int i2 = 0; i2 < 5; i2++) {
+          colorMatrix[i][i2][i3] = randomValue*randomValue*randomValue*randomValue;
+        }
+      }
+    }
   }
 }
 
